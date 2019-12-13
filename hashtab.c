@@ -1,7 +1,7 @@
 /**
  *  @file hashtab.c
  *  @version 0.0.1-dev0
- *  @date Thu Dec 12 19:37:27 CST 2019
+ *  @date Fri Dec 13 13:57:52 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -153,7 +153,7 @@ hashtab_insert(struct hashtab *p, char *s, void *x)
 void       *
 hashtab_replace(struct hashtab *p, char *key, void *val)
 {
-   /* !!! need to deal with the edge case of val being the same ptr as the original ptr !!! */
+   /* !!! user will need to deal with the edge case of val being the same ptr as the original ptr !!! */
 
    return NULL;
 }
