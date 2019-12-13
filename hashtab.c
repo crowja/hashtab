@@ -1,6 +1,6 @@
 /**
  *  @file hashtab.c
- *  @version 0.0.0
+ *  @version 0.0.1-dev0
  *  @date Thu Dec 12 19:37:27 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
@@ -112,7 +112,7 @@ hashtab_init(struct hashtab *p, void *x)
 const char *
 hashtab_version(void)
 {
-   return "0.0.0";
+   return "0.0.1-dev0";
 }
 
 /* TODO */
