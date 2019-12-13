@@ -1,2 +1,2 @@
-# hashtab
-C-scrap class providing a hash table.
+# hashtab 0.0.0.
+
