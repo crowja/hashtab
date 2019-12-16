@@ -1,7 +1,7 @@
 /**
  *  @file hashtab.c
  *  @version 0.0.1-dev0
- *  @date Fri Dec 13 13:57:52 CST 2019
+ *  @date Sun Dec 15 22:28:35 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -115,18 +115,36 @@ hashtab_version(void)
    return "0.0.1-dev0";
 }
 
-/* TODO */
-
 void       *
 hashtab_delete(struct hashtab *p, char *s)
 {
-   return NULL;
+   struct _kv *t;
+   void       *x;
+
+   HASH_FIND_STR(p->keyvals, s, t);
+
+   if (_IS_NULL(t))
+      return NULL;
+
+   x = t->val;
+   _FREE(t->key);
+   HASH_DEL(p->keyvals, t);
+   _FREE(t);
+
+   return x;
 }
+
+/**
+ *  FIXME need to change signature to int hashtab_exists(p, s, val) 
+ *  since there is ambiguity now if the key exists and is associated
+ *  with a NULL pointer.
+ */
 
 void       *
 hashtab_exists(struct hashtab *p, char *s)
 {
    struct _kv *t;
+
    HASH_FIND_STR(p->keyvals, s, t);
 
    return _IS_NULL(t) ? NULL : t->val;
@@ -153,7 +171,6 @@ hashtab_insert(struct hashtab *p, char *s, void *x)
 void       *
 hashtab_replace(struct hashtab *p, char *key, void *val)
 {
-   /* !!! user will need to deal with the edge case of val being the same ptr as the original ptr !!! */
 
    return NULL;
 }

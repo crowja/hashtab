@@ -97,6 +97,45 @@ test_insert(void)
    ASSERT_EQUALS(NULL, z);
 }
 
+static void
+test_delete(void)
+{
+   struct hashtab *z;
+   char       *x;
+
+   _printf_test_name("test_delete", "hashtab_delete");
+
+   z = hashtab_new();
+   hashtab_insert(z, "dog", "bark");
+   hashtab_insert(z, "cat", "meow");
+   hashtab_insert(z, "cow", "moo");
+   hashtab_insert(z, "tree", "bark");
+   x = hashtab_delete(z, "dog");
+   ASSERT_EQUALS(x, "bark");
+   x = hashtab_delete(z, "dog");
+   ASSERT_EQUALS(x, NULL);
+   x = hashtab_delete(z, "cat");
+   ASSERT_EQUALS(x, "meow");
+   x = hashtab_delete(z, "cat");
+   ASSERT_EQUALS(x, NULL);
+   x = hashtab_delete(z, "cow");
+   ASSERT_EQUALS(x, "moo");
+   x = hashtab_delete(z, "cow");
+   ASSERT_EQUALS(x, NULL);
+   x = hashtab_delete(z, "tree");
+   ASSERT_EQUALS(x, "bark");
+   x = hashtab_delete(z, "tree");
+   ASSERT_EQUALS(x, NULL);
+   hashtab_insert(z, "dog", "woof");
+   x = hashtab_delete(z, "dog");
+   ASSERT_EQUALS(x, "woof");
+   x = hashtab_delete(z, "dog");
+   ASSERT_EQUALS(x, NULL);
+
+   hashtab_free(&z);
+   ASSERT_EQUALS(NULL, z);
+}
+
 #if 0                                            /* 16 yy */
 static void
 test_stub(void)
@@ -124,6 +163,7 @@ main(void)
 
    RUN(test_constr);
    RUN(test_insert);
+   RUN(test_delete);
 
    return TEST_REPORT();
 }
