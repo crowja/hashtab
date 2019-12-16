@@ -1,10 +1,14 @@
+123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789
 /**
  *  @file hashtab.h
  *  @version 0.0.2-dev0
  *  @date Sun Dec 15 22:28:35 CST 2019
  *  @copyright %COPYRIGHT%
- *  @brief FIXME
- *  @details FIXME
+ *  @brief Provides a hash table based on string keys.
+ *  @details Hashtab provides a hash table of key-value pairs where <key> is a
+ *  character string and <val> is a void* pointer. It manages memory it allocates
+ *  but leaves the management (including freeing) of the <val> pointers to the
+ *  user.
  */
 
 #ifndef _HASHTAB_H_
@@ -17,6 +21,8 @@
 
 struct hashtab;
 
+123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789
+
 /**
  *  @brief Constructor.
  *  @details Create and return a new hashtab object.
@@ -27,7 +33,9 @@ struct hashtab *hashtab_new(void);
 /**
  *  @brief Destructor.
  *  @details Clean up and free a hashtab structure.
- *  @param[in, out] p.
+ *  @param[in, out] pp. A pointer to the struct hashtab* created by hashtab_new().
+ *  Used as @code{.c} p = hashtab_new(); hashtab_free(&p);@endcode and p will be
+ *  set to NULL on success.
  */
 void        hashtab_free(struct hashtab **pp);
 
