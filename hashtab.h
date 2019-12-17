@@ -1,14 +1,13 @@
-123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789
 /**
  *  @file hashtab.h
  *  @version 0.0.2-dev0
- *  @date Sun Dec 15 22:28:35 CST 2019
+ *  @date Mon Dec 16 19:52:40 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief Provides a hash table based on string keys.
  *  @details Hashtab provides a hash table of key-value pairs where <key> is a
- *  character string and <val> is a void* pointer. It manages memory it allocates
- *  but leaves the management (including freeing) of the <val> pointers to the
- *  user.
+ *  character string and <val> is a void * pointer. It manages memory that it
+ *  allocates; the management (including freeing) of the <val> pointers is left
+ *  to the user.
  */
 
 #ifndef _HASHTAB_H_
@@ -20,8 +19,6 @@
 #define _PACKAGE_NAME "hashtab"
 
 struct hashtab;
-
-123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789
 
 /**
  *  @brief Constructor.

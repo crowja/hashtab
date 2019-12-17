@@ -1,7 +1,7 @@
 /**
  *  @file hashtab.c
  *  @version 0.0.2-dev0
- *  @date Sun Dec 15 22:28:35 CST 2019
+ *  @date Mon Dec 16 19:52:40 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -29,7 +29,7 @@ hash_sdbm(unsigned char *str)
    unsigned long hash = 0;
    int         c;
 
-   while (c = *str++)
+   while ((c = *str++))
       hash = c + (hash << 6) + (hash << 16) - hash;
 
    return hash;
