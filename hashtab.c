@@ -1,7 +1,7 @@
 /**
  *  @file hashtab.c
  *  @version 0.0.2-dev0
- *  @date Mon Dec 16 19:52:40 CST 2019
+ *  @date Sun Dec 22 16:13:09 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief FIXME
  *  @details FIXME
@@ -41,7 +41,7 @@ hash_djb2(unsigned char *str)
    unsigned long hash = 5381;
    int         c;
 
-   while (c = *str++)
+   while ((c = *str++))
       hash = ((hash << 5) + hash) + c;           /* hash * 33 + c */
 
    return hash;
@@ -116,12 +116,12 @@ hashtab_version(void)
 }
 
 void       *
-hashtab_delete(struct hashtab *p, char *s)
+hashtab_delete(struct hashtab *p, char *key)
 {
    struct _kv *t;
    void       *x;
 
-   HASH_FIND_STR(p->keyvals, s, t);
+   HASH_FIND_STR(p->keyvals, key, t);
 
    if (_IS_NULL(t))
       return NULL;
@@ -140,30 +140,38 @@ hashtab_delete(struct hashtab *p, char *s)
  *  with a NULL pointer.
  */
 
-void       *
-hashtab_exists(struct hashtab *p, char *s)
+int
+hashtab_exists(struct hashtab *p, char *key, void **valp)
 {
    struct _kv *t;
 
-   HASH_FIND_STR(p->keyvals, s, t);
+   HASH_FIND_STR(p->keyvals, key, t);
 
-   return _IS_NULL(t) ? NULL : t->val;
+   if (_IS_NULL(t))
+      return 0;
+   else {
+      *valp = t->val;
+      return 1;
+   }
+   /*
+      return _IS_NULL(t) ? NULL : t->val;
+    */
 }
 
 int
-hashtab_insert(struct hashtab *p, char *s, void *x)
+hashtab_insert(struct hashtab *p, char *key, void *val)
 {
    struct _kv *t;
 
-   HASH_FIND_STR(p->keyvals, s, t);
+   HASH_FIND_STR(p->keyvals, key, t);
 
    if (!_IS_NULL(t))
       return 0;                                  /* already exists */
 
    t = (struct _kv *) malloc(sizeof(struct _kv));
-   t->key = malloc((1 + strlen(s)) * sizeof(char));
-   strcpy(t->key, s);
-   t->val = x;
+   t->key = malloc((1 + strlen(key)) * sizeof(char));
+   strcpy(t->key, key);
+   t->val = val;
    HASH_ADD_KEYPTR(hh, p->keyvals, t->key, strlen(t->key), t);
    return 1;
 }
@@ -171,7 +179,7 @@ hashtab_insert(struct hashtab *p, char *s, void *x)
 void       *
 hashtab_replace(struct hashtab *p, char *key, void *val)
 {
-
+   /* TODO */
    return NULL;
 }
 

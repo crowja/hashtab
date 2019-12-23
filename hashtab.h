@@ -1,7 +1,7 @@
 /**
  *  @file hashtab.h
  *  @version 0.0.2-dev0
- *  @date Mon Dec 16 19:52:40 CST 2019
+ *  @date Sun Dec 22 16:13:09 CST 2019
  *  @copyright %COPYRIGHT%
  *  @brief Provides a hash table based on string keys.
  *  @details Hashtab provides a hash table of key-value pairs where <key> is a
@@ -52,7 +52,7 @@ int         hashtab_init(struct hashtab *p, void *x);
 const char *hashtab_version(void);
 
 void       *hashtab_delete(struct hashtab *p, char *key);
-void       *hashtab_exists(struct hashtab *p, char *key);
+int         hashtab_exists(struct hashtab *p, char *key, void **valp);
 int         hashtab_insert(struct hashtab *p, char *key, void *val);
 void       *hashtab_replace(struct hashtab *p, char *key, void *val);
 /**

@@ -75,21 +75,31 @@ test_insert(void)
 
    _printf_test_name("test_insert", "hashtab_insert");
 
+   /* New hashtab */
    z = hashtab_new();
-   ASSERT("Constructor test, pt 1", z);
 
-   x = hashtab_exists(z, &(words[0]));
-   ASSERT("Test", NULL == x);
+   /* Check if "cat" exists as a key, expect no, rc == 0 */
+   rc = hashtab_exists(z, words[0], &x);
+   ASSERT_EQUALS(0, rc);
+
+   /* Insert key="meow", val="cat", expect success, rc == 1 */
    rc = hashtab_insert(z, "meow", words[0]);
-   x = hashtab_exists(z, "meow");
-   ASSERT("Test", NULL != x);
    ASSERT_EQUALS(1, rc);
+
+   /* Check if key "meow" exists with val "cat", expect success, rc == 1 */
+   rc = hashtab_exists(z, "meow", &x);
+   ASSERT_EQUALS(1, rc);
+   ASSERT_STRING_EQUALS("cat", x);
+
+   /* Try to reinsert key "meow", val "cat", expect fail, rc == 0 */
    rc = hashtab_insert(z, "meow", "cat");
    ASSERT_EQUALS(0, rc);
 
+   /* See if key "meow" exists with val "cat", expect success, rc == 1 */
+   rc = hashtab_exists(z, "meow", &x);
+   ASSERT_EQUALS(1, rc);
+   ASSERT_STRING_EQUALS("cat", x);
 #if 0
-   x = hashtab_exists(z, "meow");
-   ASSERT("Test", NULL != x);
    printf("%s --> %s\n", "meow", (char *) x);
 #endif
 
