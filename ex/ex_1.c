@@ -5,6 +5,8 @@
 int
 main(void)
 {
+   int rc;
+   void *valp;
    struct hashtab *z = hashtab_new();
 
    hashtab_insert(z, "dog", "woof");
@@ -12,10 +14,10 @@ main(void)
    hashtab_insert(z, "pig", "oink");
    hashtab_insert(z, "ant", "silence");
 
-   printf("%s says %s\n", "dog", (char *) hashtab_exists(z, "dog"));
-   printf("%s says %s\n", "cat", (char *) hashtab_exists(z, "cat"));
-   printf("%s says %s\n", "pig", (char *) hashtab_exists(z, "pig"));
-   printf("%s says %s\n", "ant", (char *) hashtab_exists(z, "ant"));
+   rc = hashtab_exists(z, "dog", &valp);
+   printf("%s says %s\n", "dog", (char *) valp);
+   rc = hashtab_exists(z, "ant", &valp);
+   printf("%s says %s\n", "ant", (char *) valp);
 
    hashtab_free(&z);
 
