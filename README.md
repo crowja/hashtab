@@ -1,2 +1,2 @@
-# hashtab 0.0.2-dev0.
+# hashtab 0.1.0-dev0.
 

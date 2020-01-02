@@ -1,6 +1,6 @@
 /**
  *  @file hashtab.c
- *  @version 0.0.2-dev0
+ *  @version 0.1.0-dev0
  *  @date Sun Dec 22 16:13:09 CST 2019
  *  @copyright 2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
@@ -111,7 +111,7 @@ hashtab_init(struct hashtab *p, void *x)
 const char *
 hashtab_version(void)
 {
-   return "0.0.2-dev0";
+   return "0.1.0-dev0";
 }
 
 void       *
