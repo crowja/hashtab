@@ -88,8 +88,8 @@ indent: stamp
 	@indent $(INDENT_FLAGS) ex/ex_1.c
 
 stamp:
-	@bash stamper.bash hashtab.c
-	@bash stamper.bash hashtab.h
+	@stamper.bash hashtab.c
+	@stamper.bash hashtab.h
 
 clean:
 	@/bin/rm -f *.o *~ *.BAK *.bak core.*
