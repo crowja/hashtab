@@ -2,7 +2,8 @@
  *  @file hashtab.h
  *  @version 0.0.2-dev0
  *  @date Sun Dec 22 16:13:09 CST 2019
- *  @copyright %COPYRIGHT%
+ *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @license Unlicense <http://unlicense.org/>
  *  @brief Provides a hash table based on string keys.
  *  @details Hashtab provides a hash table of key-value pairs where <key> is a
  *  character string and <val> is a void * pointer. It manages memory that it

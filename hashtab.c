@@ -2,9 +2,8 @@
  *  @file hashtab.c
  *  @version 0.0.2-dev0
  *  @date Sun Dec 22 16:13:09 CST 2019
- *  @copyright %COPYRIGHT%
- *  @brief FIXME
- *  @details FIXME
+ *  @copyright 2020 John A. Crow <crowja@gmail.com>
+ *  @license Unlicense <http://unlicense.org/>
  */
 
 #include <stdlib.h>
