@@ -1,7 +1,7 @@
 /**
  *  @file hashtab.c
  *  @version 0.1.0-dev0
- *  @date Sun Dec 22 16:13:09 CST 2019
+ *  @date Sun Feb 16, 2020 04:39:06 PM CST
  *  @copyright 2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
  */
@@ -12,15 +12,15 @@
 #include "uthash.h"
 #include "hashtab.h"
 
-#ifdef  _IS_NULL
-#undef  _IS_NULL
+#ifdef  IS_NULL
+#undef  IS_NULL
 #endif
-#define _IS_NULL(p)   ((NULL == (p)) ? (1) : (0))
+#define IS_NULL(p)   ((NULL == (p)) ? (1) : (0))
 
-#ifdef  _FREE
-#undef  _FREE
+#ifdef  FREE
+#undef  FREE
 #endif
-#define _FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
+#define FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
 static unsigned long
 hash_sdbm(unsigned char *str)
@@ -66,7 +66,7 @@ hashtab_new(void)
    struct hashtab *tp;
 
    tp = (struct hashtab *) malloc(sizeof(struct hashtab));
-   if (_IS_NULL(tp))
+   if (IS_NULL(tp))
       return NULL;
 
    tp->x = NULL;
@@ -82,7 +82,7 @@ hashtab_free(struct hashtab **pp)
    struct _kv *s;
    struct _kv *t;
 
-   if (_IS_NULL(*pp))
+   if (IS_NULL(*pp))
       return;
 
    t = (*pp)->keyvals;
@@ -90,12 +90,12 @@ hashtab_free(struct hashtab **pp)
    while (t != NULL) {
       s = t;
       t = s->hh.next;
-      _FREE(s->key);
+      FREE(s->key);
       HASH_DEL((*pp)->keyvals, s);
-      _FREE(s);
+      FREE(s);
    }
 
-   _FREE(*pp);
+   FREE(*pp);
    *pp = NULL;
 }
 
@@ -122,13 +122,13 @@ hashtab_delete(struct hashtab *p, char *key)
 
    HASH_FIND_STR(p->keyvals, key, t);
 
-   if (_IS_NULL(t))
+   if (IS_NULL(t))
       return NULL;
 
    x = t->val;
-   _FREE(t->key);
+   FREE(t->key);
    HASH_DEL(p->keyvals, t);
-   _FREE(t);
+   FREE(t);
 
    return x;
 }
@@ -146,14 +146,14 @@ hashtab_exists(struct hashtab *p, char *key, void **valp)
 
    HASH_FIND_STR(p->keyvals, key, t);
 
-   if (_IS_NULL(t))
+   if (IS_NULL(t))
       return 0;
    else {
       *valp = t->val;
       return 1;
    }
    /*
-      return _IS_NULL(t) ? NULL : t->val;
+      return IS_NULL(t) ? NULL : t->val;
     */
 }
 
@@ -164,7 +164,7 @@ hashtab_insert(struct hashtab *p, char *key, void *val)
 
    HASH_FIND_STR(p->keyvals, key, t);
 
-   if (!_IS_NULL(t))
+   if (!IS_NULL(t))
       return 0;                                  /* already exists */
 
    t = (struct _kv *) malloc(sizeof(struct _kv));
@@ -182,5 +182,5 @@ hashtab_replace(struct hashtab *p, char *key, void *val)
    return NULL;
 }
 
-#undef  _IS_NULL
-#undef  _FREE
+#undef  IS_NULL
+#undef  FREE

@@ -1,7 +1,7 @@
 /**
  *  @file hashtab.h
  *  @version 0.1.0-dev0
- *  @date Sun Dec 22 16:13:09 CST 2019
+ *  @date Sun Feb 16, 2020 04:39:06 PM CST
  *  @copyright 2020 John A. Crow <crowja@gmail.com>
  *  @license Unlicense <http://unlicense.org/>
  *  @brief Provides a hash table based on string keys.
@@ -11,13 +11,8 @@
  *  to the user.
  */
 
-#ifndef _HASHTAB_H_
-#define _HASHTAB_H_
-
-#ifdef  _PACKAGE_NAME
-#undef  _PACKAGE_NAME
-#endif
-#define _PACKAGE_NAME "hashtab"
+#ifndef HASHTAB_H
+#define HASHTAB_H
 
 struct hashtab;
 

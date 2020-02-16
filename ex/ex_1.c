@@ -5,8 +5,8 @@
 int
 main(void)
 {
-   int rc;
-   void *valp;
+   int         rc;
+   void       *valp;
    struct hashtab *z = hashtab_new();
 
    hashtab_insert(z, "dog", "woof");
